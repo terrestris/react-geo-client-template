@@ -33,9 +33,9 @@ import UrlUtil from '@terrestris/base-util/dist/UrlUtil/UrlUtil';
 
 import MapContext from '@terrestris/react-geo/dist/Context/MapContext/MapContext';
 
-import ShogunApplicationUtil from '@terrestris/shogun-util/dist/parser/ShogunApplicationUtil';
+import SHOGunApplicationUtil from '@terrestris/shogun-util/dist/parser/SHOGunApplicationUtil';
 
-import SHOGunClient from '@terrestris/shogun-util/dist/service/SHOGunClient';
+import SHOGunAPIClient from '@terrestris/shogun-util/dist/service/SHOGunAPIClient';
 
 import App from './App';
 import i18n from './i18n';
@@ -68,14 +68,13 @@ const setupMap = async () => {
   Logger.info('No application ID given, will load the default map configuration.');
 
   return setupDefaultMap();
-
 };
 
 const setupSHOGunMap = async (applicationId: number) => {
-  const client = new SHOGunClient({
+  const client = new SHOGunAPIClient({
     url: '/api/'
   });
-  const parser = new ShogunApplicationUtil({
+  const parser = new SHOGunApplicationUtil({
     client
   });
 
