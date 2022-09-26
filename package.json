@@ -40,7 +40,7 @@
     "@terrestris/react-geo": "^19.4.0",
     "@terrestris/shogun-util": "^3.5.0",
     "antd": "^4.23.2",
-    "i18next": "^21.9.1",
+    "i18next": "^21.9.2",
     "i18next-browser-languagedetector": "^6.1.5",
     "normalize.css": "^8.0.1",
     "ol": "^6.15.1",
