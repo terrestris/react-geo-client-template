@@ -36,7 +36,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
     "@terrestris/base-util": "^1.0.1",
-    "@terrestris/ol-util": "^7.4.0",
+    "@terrestris/ol-util": "^7.4.1",
     "@terrestris/react-geo": "^19.4.1",
     "@terrestris/shogun-util": "^3.6.0",
     "antd": "^4.23.3",
