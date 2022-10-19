@@ -40,7 +40,7 @@ export const SideDrawer: React.FC<Partial<DrawerProps>> = (props): JSX.Element =
       title={t('Drawer.title')}
       placement="right"
       onClose={toggleDrawer}
-      visible={visible}
+      open={visible}
       mask={false}
       {...props}
     >
