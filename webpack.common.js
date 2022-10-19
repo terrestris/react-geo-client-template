@@ -2,8 +2,6 @@ const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const customCssTheme = require('./antd.theme');
-
 module.exports = {
   entry: './src/index.tsx',
   module: {
@@ -26,7 +24,6 @@ module.exports = {
         loader: 'less-loader',
         options: {
           lessOptions: {
-            modifyVars: customCssTheme,
             javascriptEnabled: true
           }
         }
