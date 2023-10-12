@@ -53,7 +53,7 @@
     "@babel/core": "^7.23.0",
     "@babel/preset-env": "^7.22.15",
     "@babel/preset-react": "^7.22.15",
-    "@babel/preset-typescript": "^7.23.0",
+    "@babel/preset-typescript": "^7.23.2",
     "@playwright/test": "^1.38.1",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
     "@terrestris/eslint-config-typescript": "^3.1.0",
