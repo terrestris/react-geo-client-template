@@ -54,7 +54,7 @@
     "@babel/preset-env": "^7.23.2",
     "@babel/preset-react": "^7.22.15",
     "@babel/preset-typescript": "^7.23.2",
-    "@playwright/test": "^1.38.1",
+    "@playwright/test": "^1.39.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
     "@terrestris/eslint-config-typescript": "^3.1.0",
     "@testing-library/jest-dom": "^5.17.0",
