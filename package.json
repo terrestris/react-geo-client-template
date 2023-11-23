@@ -81,7 +81,7 @@
     "react-refresh": "0.14.0",
     "style-loader": "^3.3.3",
     "terser-webpack-plugin": "^5.3.9",
-    "typescript": "^5.2.2",
+    "typescript": "^5.3.2",
     "webpack": "^5.89.0",
     "webpack-bundle-analyzer": "^4.9.1",
     "webpack-cli": "^5.1.4",
