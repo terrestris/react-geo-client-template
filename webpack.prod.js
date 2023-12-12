@@ -25,7 +25,8 @@ module.exports = merge(common, {
               javascriptEnabled: true
             }
           }
-        }]
+        }
+      ]
     }]
   },
   plugins: [
