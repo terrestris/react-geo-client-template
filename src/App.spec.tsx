@@ -1,7 +1,8 @@
 import React from 'react';
 
 import {
-  render, screen
+  render,
+  screen
 } from '@testing-library/react';
 
 import {
@@ -37,7 +38,7 @@ describe('App', () => {
       wrapper: createWrapper()
     });
 
-    const linkElement = screen.getByRole(/button/i);
+    const linkElement = screen.getByRole('button');
     expect(linkElement).toBeInTheDocument();
   });
 });

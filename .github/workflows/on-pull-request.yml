@@ -7,15 +7,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout sources 🔰
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
-    - name: Setup Node.js 16
-      uses: actions/setup-node@v1
+    - name: Setup Node.js 🧮
+      uses: actions/setup-node@v4
       with:
-        node-version: 16
+        node-version: 20
 
     - name: Cache Node.js modules 💾
-      uses: actions/cache@v2
+      uses: actions/cache@v4
       with:
         path: ~/.npm
         key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -35,7 +35,7 @@ jobs:
       run: npm run check
 
     - name: Save e2e failure screenshots 😱
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: failure()
       with:
         name: e2e-failure-screenshots

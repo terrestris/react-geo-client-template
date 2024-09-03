@@ -22,16 +22,18 @@ import OlSourceOsm from 'ol/source/OSM';
 import OlSourceTileWMS from 'ol/source/TileWMS';
 import OlView from 'ol/View';
 import {
-  render
-} from 'react-dom';
+  createRoot
+} from 'react-dom/client';
 import {
   Provider
 } from 'react-redux';
 
 import Logger from '@terrestris/base-util/dist/Logger';
-import UrlUtil from '@terrestris/base-util/dist/UrlUtil/UrlUtil';
+import {
+  UrlUtil
+} from '@terrestris/base-util/dist/UrlUtil/UrlUtil';
 
-import MapContext from '@terrestris/react-geo/dist/Context/MapContext/MapContext';
+import MapContext from '@terrestris/react-util/dist/Context/MapContext/MapContext';
 
 import SHOGunApplicationUtil from '@terrestris/shogun-util/dist/parser/SHOGunApplicationUtil';
 
@@ -164,10 +166,19 @@ const setupDefaultMap = () => {
 };
 
 const renderApp = async () => {
+  const container = document.getElementById('app');
+
+  if (!container) {
+    Logger.error('Could not find container element with ID "app"');
+    return;
+  }
+
+  const root = createRoot(container);
+
   try {
     const map = await setupMap();
 
-    render(
+    root.render(
       <React.StrictMode>
         <React.Suspense fallback={<span></span>}>
           <ConfigProvider locale={getConfigLang(i18n.language)}>
@@ -178,13 +189,12 @@ const renderApp = async () => {
             </Provider>
           </ConfigProvider>
         </React.Suspense>
-      </React.StrictMode>,
-      document.getElementById('app')
+      </React.StrictMode>
     );
   } catch (error) {
     Logger.error(error);
 
-    render(
+    root.render(
       <React.StrictMode>
         <Alert
           className="error-boundary"
@@ -193,8 +203,7 @@ const renderApp = async () => {
           type="error"
           showIcon
         />
-      </React.StrictMode>,
-      document.getElementById('app')
+      </React.StrictMode>
     );
   }
 };

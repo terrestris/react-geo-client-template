@@ -1,9 +1,12 @@
 import React from 'react';
 
-import useMap from '@terrestris/react-geo/dist/Hook/useMap';
-import MapComponent, {
+import {
+  MapComponent,
   MapComponentProps
 } from '@terrestris/react-geo/dist/Map/MapComponent/MapComponent';
+import {
+  useMap
+} from '@terrestris/react-util/dist/Hooks/useMap/useMap';
 
 export const BasicMapComponent: React.FC<Partial<MapComponentProps>> = (props): JSX.Element => {
   const map = useMap();
