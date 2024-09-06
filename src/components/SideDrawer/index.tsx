@@ -22,8 +22,6 @@ import {
   toggleVisibility
 } from '../../store/drawer';
 
-import './index.less';
-
 export const SideDrawer: React.FC<Partial<DrawerProps>> = (props): JSX.Element => {
   const dispatch = useAppDispatch();
   const visible = useAppSelector((state) => state.drawer.visible);
@@ -37,7 +35,7 @@ export const SideDrawer: React.FC<Partial<DrawerProps>> = (props): JSX.Element =
 
   return (
     <Drawer
-      title={t('Drawer.title')}
+      title={t('SideDrawer.title')}
       placement="right"
       onClose={toggleDrawer}
       open={visible}

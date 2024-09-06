@@ -5,3 +5,23 @@
   height: 100%;
   width: 100%;
 }
+
+.App {
+  .map-controls {
+    display: flex;
+    transition: all 0.3s;
+    width: 600px;
+    position: fixed;
+    top: 30px;
+    right: 30px;
+
+    &.drawer-open {
+      // 378px (drawer width) + 30px (default position)
+      right: 408px;
+    }
+
+    .react-geo-search {
+      padding-right: 10px;
+    }
+  }
+}

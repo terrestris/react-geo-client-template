@@ -11,9 +11,17 @@ export const BasicLayerTree: React.FC<Partial<LayerTreeProps>> = (
   props
 ): JSX.Element => {
 
+  const filterFunction = (layer: OlLayerBase) => {
+    if (layer instanceof OlLayerVector) {
+      return false;
+    }
+
+    return true;
+  };
+
   return (
     <LayerTree
-      filterFunction={(layer: OlLayerBase) => !(layer instanceof OlLayerVector)}
+      filterFunction={filterFunction}
       {...props}
     />
   );

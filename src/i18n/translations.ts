@@ -9,11 +9,14 @@ export default {
         errorDescription: 'Aufgrund eines unerwarteten Fehlers konnte die Applikation nicht geladen werden. ' +
           'Bitte laden Sie die Seite erneut.'
       },
-      Nominatim: {
+      BasicNominatimSearch: {
         placeholder: 'Ortsname, Straßenname, Stadtteilname, POI usw.'
       },
-      Drawer: {
+      SideDrawer: {
         title: 'Themen'
+      },
+      ToggleDrawerButton: {
+        tooltip: 'Themen ein-/ausblenden'
       }
     }
   },
@@ -26,11 +29,14 @@ export default {
         errorMessage: 'Error while loading the application',
         errorDescription: 'An unexpected error occured while loading the application. Please try to reload the page.'
       },
-      Nominatim: {
+      BasicNominatimSearch: {
         placeholder: 'Place name, street name, district name, POI, etc.'
       },
-      Drawer: {
+      SideDrawer: {
         title: 'Layers'
+      },
+      ToggleDrawerButton: {
+        tooltip: 'Show/hide layers'
       }
     }
   }

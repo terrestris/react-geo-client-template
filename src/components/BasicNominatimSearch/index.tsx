@@ -24,17 +24,16 @@ import {
   useMap
 } from '@terrestris/react-util/dist/Hooks/useMap/useMap';
 
-import './index.less';
-
 export type BasicNominatimSearchProps = React.FC<Partial<SearchFieldProps<Geometry, NominatimPlace>>>;
 
 export const BasicNominatimSearch: BasicNominatimSearchProps = (props): JSX.Element => {
   const map = useMap();
+
   const {
     t
   } = useTranslation();
+
   const nominatimSearchFunction = useMemo(() => createNominatimSearchFunction({
-    nominatimBaseUrl: 'https://nominatim.terrestris.de/search',
     countryCodes: ''
   }), []);
   const nominatimGetValue = useMemo(() => createNominatimGetValueFunction(), []);
@@ -50,7 +49,7 @@ export const BasicNominatimSearch: BasicNominatimSearchProps = (props): JSX.Elem
       getValue={nominatimGetValue}
       getExtent={nominatimGetExtent}
       allowClear={true}
-      placeholder={t('Nominatim.placeholder')}
+      placeholder={t('BasicNominatimSearch.placeholder')}
       {...props}
     />
   );
