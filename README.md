@@ -9,7 +9,7 @@ command line tool.
 This application contains several features to increase the development experience, e.g.:
 
 - Written in [TypeScript](https://www.typescriptlang.org/)
-- Webpack [Hot Module Replacement](https://webpack.js.org/concepts/hot-module-replacement/)
+- Rspack [Hot Module Replacement](https://rspack.org/guide/tech/react#fast-refresh)
 - Analyis of the build output via [Webpack Bundle Analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer)
 - Optimized build including [code splitting](https://webpack.js.org/guides/code-splitting/)
 - Styling via [Less](https://lesscss.org/)
