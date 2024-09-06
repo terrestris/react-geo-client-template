@@ -71,9 +71,9 @@ module.exports = {
   plugins: [
     new rspack.HtmlRspackPlugin({
       filename: 'index.html',
-      title: 'Hello World',
       template: path.join(__dirname, 'resources', 'template', 'index.ejs'),
       templateParameters: {
+        title: 'Hello World',
         appPrefix: process.env.HTML_BASE_URL ?? ''
       },
       favicon: path.join(__dirname, 'resources', 'public', 'favicon.ico'),
