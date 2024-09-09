@@ -18,20 +18,26 @@ import OlMap from 'ol/Map';
 import {
   fromLonLat
 } from 'ol/proj';
-import OlSourceOsm from 'ol/source/OSM';
 import OlSourceTileWMS from 'ol/source/TileWMS';
 import OlView from 'ol/View';
+
 import {
-  render
-} from 'react-dom';
+  apply as applyMapboxStyle
+} from 'ol-mapbox-style';
+
+import {
+  createRoot
+} from 'react-dom/client';
 import {
   Provider
 } from 'react-redux';
 
 import Logger from '@terrestris/base-util/dist/Logger';
-import UrlUtil from '@terrestris/base-util/dist/UrlUtil/UrlUtil';
+import {
+  UrlUtil
+} from '@terrestris/base-util/dist/UrlUtil/UrlUtil';
 
-import MapContext from '@terrestris/react-geo/dist/Context/MapContext/MapContext';
+import MapContext from '@terrestris/react-util/dist/Context/MapContext/MapContext';
 
 import SHOGunApplicationUtil from '@terrestris/shogun-util/dist/parser/SHOGunApplicationUtil';
 
@@ -93,7 +99,7 @@ const setupSHOGunMap = async (applicationId: number) => {
       duration: 0
     });
 
-    return setupDefaultMap();
+    return await setupDefaultMap();
   }
 
   const view = await parser.parseMapView(application);
@@ -108,66 +114,92 @@ const setupSHOGunMap = async (applicationId: number) => {
   });
 };
 
-const setupDefaultMap = () => {
-  const osmLayer = new OlLayerTile({
-    source: new OlSourceOsm()
+const setupDefaultMap = async () => {
+  const basemapLayer = new OlLayerGroup({
+    properties: {
+      name: 'Basemap DE'
+    }
   });
-  osmLayer.set('name', 'OpenStreetMap');
 
-  const temperatureDayLayer = new OlLayerTile({
-    opacity: 0.5,
+  await applyMapboxStyle(
+    basemapLayer,
+    'https://sgx.geodatenzentrum.de/gdz_basemapde_vektor/styles/bm_web_top.json'
+  );
+
+  basemapLayer.getLayersArray().forEach(l => {
+    const mbLayers: string[] = l.get('mapbox-layers');
+
+    if (mbLayers.includes('Hintergrund')) {
+      l.set('name', 'Hintergrund');
+    }
+
+    if (mbLayers.includes('Schummerung_Col')) {
+      l.set('name', 'Schummerung (Farbe)');
+    }
+
+    if (mbLayers.includes('Schummerung_Comb')) {
+      l.set('name', 'Schummerung (Graustufen)');
+    }
+
+    if (mbLayers.includes('Hoehenlinie_1000er')) {
+      l.set('name', 'Höhenlinien');
+    }
+
+    if (mbLayers.includes('ReliefF_Duene')) {
+      l.set('name', 'Overlays');
+    }
+  });
+
+  const topPlusOpenLayer = new OlLayerTile({
+    properties: {
+      name: 'TopPlusOpen Light'
+    },
     source: new OlSourceTileWMS({
-      url: 'https://neo.gsfc.nasa.gov/wms/wms',
-      projection: 'CRS:84',
+      url: 'https://sgx.geodatenzentrum.de/wms_topplus_open',
       params: {
-        LAYERS: 'MOD_LSTD_CLIM_M'
-      }
+        LAYERS: 'web_light'
+      },
+      attributions: [
+        'Kartendarstellung und Präsentationsgraphiken: © <a href="https://www.bkg.bund.de/">' +
+        `Bundesamt für Kartographie und Geodäsie</a> (${new Date().getFullYear()}), ` +
+        '<a href="https://sgx.geodatenzentrum.de/web_public/gdz/datenquellen/Datenquellen_TopPlusOpen.html">' +
+        'Datenquellen</a>'
+      ]
     })
   });
-  temperatureDayLayer.set('name', 'Average Land Surface Temperature (Day)');
 
-  const temperatureNightLayer = new OlLayerTile({
-    opacity: 0.5,
-    visible: false,
-    source: new OlSourceTileWMS({
-      url: 'https://neo.gsfc.nasa.gov/wms/wms',
-      projection: 'CRS:84',
-      params: {
-        LAYERS: 'MOD_LSTN_CLIM_M'
-      }
-    })
-  });
-  temperatureNightLayer.set('name', 'Average Land Surface Temperature (Night)');
-
-  const eoLayerGroup = new OlLayerGroup({
-    layers: [temperatureDayLayer, temperatureNightLayer]
-  });
-  eoLayerGroup.set('name', 'NASA Earth Observations');
-
-  const backgroundLayerGroup = new OlLayerGroup({
-    layers: [osmLayer]
-  });
-  backgroundLayerGroup.set('name', 'Background');
-
-  const center = fromLonLat([0, 40], 'EPSG:3857');
-
-  return new OlMap({
+  const map = new OlMap({
     view: new OlView({
-      center: center,
-      zoom: 0
+      center: fromLonLat([10, 51.5], 'EPSG:3857'),
+      zoom: 6,
+      constrainResolution: true
     }),
-    layers: [backgroundLayerGroup, eoLayerGroup],
+    layers: [
+      topPlusOpenLayer,
+      basemapLayer
+    ],
     controls: OlControlDefaults({
       zoom: false
     })
   });
+
+  return map;
 };
 
 const renderApp = async () => {
+  const container = document.getElementById('app');
+
+  if (!container) {
+    Logger.error('Could not find container element with ID "app"');
+    return;
+  }
+
+  const root = createRoot(container);
+
   try {
     const map = await setupMap();
 
-    render(
+    root.render(
       <React.StrictMode>
         <React.Suspense fallback={<span></span>}>
           <ConfigProvider locale={getConfigLang(i18n.language)}>
@@ -178,13 +210,12 @@ const renderApp = async () => {
             </Provider>
           </ConfigProvider>
         </React.Suspense>
-      </React.StrictMode>,
-      document.getElementById('app')
+      </React.StrictMode>
     );
   } catch (error) {
     Logger.error(error);
 
-    render(
+    root.render(
       <React.StrictMode>
         <Alert
           className="error-boundary"
@@ -193,8 +224,7 @@ const renderApp = async () => {
           type="error"
           showIcon
         />
-      </React.StrictMode>,
-      document.getElementById('app')
+      </React.StrictMode>
     );
   }
 };

@@ -21,21 +21,14 @@ test.describe('Basic application tests', () => {
   }) => {
     await expect(page.locator('div#map').first()).toBeVisible();
     await expect(page.locator('canvas').first()).toBeVisible();
-    await expect(page.locator('div.react-geo-nominatimsearch').first()).toBeVisible();
+    await expect(page.locator('div.react-geo-search').first()).toBeVisible();
     await expect(page.locator('button.toggle-drawer-button').first()).toBeVisible();
   });
 
-  test('it successfully loads the example WMS layer', async ({
+  test('it successfully loads the TopPlusOpen background layer', async ({
     page
   }) => {
-    const response = await page.waitForResponse(/https:\/\/neo.gsfc.nasa.gov\/wms\/wms/);
-    expect(response.status()).toBe(200);
-  });
-
-  test('it successfully loads the OSM background layer', async ({
-    page
-  }) => {
-    const response = await page.waitForResponse(/tile.openstreetmap.org/);
+    const response = await page.waitForResponse(/sgx.geodatenzentrum.de\/wms_topplus_open/);
     expect(response.status()).toBe(200);
   });
 
