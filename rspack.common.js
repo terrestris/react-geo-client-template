@@ -48,6 +48,17 @@ module.exports = {
         }
       }
     }, {
+      test: /\.less$/,
+      type: 'css/auto',
+      use: [{
+        loader: 'less-loader',
+        options: {
+          lessOptions: {
+            javascriptEnabled: true
+          }
+        }
+      }]
+    }, {
       test: /\.d\.ts$/,
       loader: 'ignore-loader'
     }, {
