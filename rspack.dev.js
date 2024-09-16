@@ -16,20 +16,6 @@ module.exports = merge(common, {
     hot: true,
     static: path.join(__dirname, 'resources', 'public')
   },
-  module: {
-    rules: [{
-      test: /\.less$/,
-      type: 'css/auto',
-      use: [{
-        loader: 'less-loader',
-        options: {
-          lessOptions: {
-            javascriptEnabled: true
-          }
-        }
-      }]
-    }]
-  },
   plugins: [
     new ReactRefreshPlugin()
   ]
