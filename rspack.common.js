@@ -48,6 +48,17 @@ module.exports = {
         }
       }
     }, {
+      test: /\.less$/,
+      type: 'css/auto',
+      use: [{
+        loader: 'less-loader',
+        options: {
+          lessOptions: {
+            javascriptEnabled: true
+          }
+        }
+      }]
+    }, {
       test: /\.d\.ts$/,
       loader: 'ignore-loader'
     }, {
@@ -78,7 +89,6 @@ module.exports = {
       },
       favicon: path.join(__dirname, 'resources', 'public', 'favicon.ico'),
       meta: {
-        charset: 'utf-8',
         viewport: 'user-scalable=no, width=device-width, initial-scale=1, shrink-to-fit=no'
       }
     })
