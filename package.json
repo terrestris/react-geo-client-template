@@ -57,7 +57,7 @@
     "@babel/preset-react": "^7.24.7",
     "@babel/preset-typescript": "^7.24.7",
     "@playwright/test": "^1.47.2",
-    "@rspack/cli": "^1.0.7",
+    "@rspack/cli": "^1.0.8",
     "@rspack/core": "^1.0.7",
     "@rspack/plugin-react-refresh": "^1.0.0",
     "@swc/helpers": "^0.5.13",
