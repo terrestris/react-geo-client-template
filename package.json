@@ -34,7 +34,7 @@
     "not IE 11"
   ],
   "dependencies": {
-    "@reduxjs/toolkit": "^2.3.0",
+    "@reduxjs/toolkit": "^2.4.0",
     "@terrestris/base-util": "^3.0.0",
     "@terrestris/ol-util": "^19.0.1",
     "@terrestris/react-geo": "^24.5.0",
