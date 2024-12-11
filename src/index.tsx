@@ -41,7 +41,9 @@ import MapContext from '@terrestris/react-util/dist/Context/MapContext/MapContex
 
 import SHOGunApplicationUtil from '@terrestris/shogun-util/dist/parser/SHOGunApplicationUtil';
 
-import SHOGunAPIClient from '@terrestris/shogun-util/dist/service/SHOGunAPIClient';
+import {
+  SHOGunAPIClient
+} from '@terrestris/shogun-util/dist/service/SHOGunAPIClient';
 
 import App from './App';
 import i18n from './i18n';

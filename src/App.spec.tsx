@@ -16,7 +16,7 @@ import {
 } from './store/store';
 
 const createWrapper = () => {
-  // eslint-disable-next-line react/display-name
+
   return ({
     children
   }: any) => <Provider store={store}>{children}</Provider>;

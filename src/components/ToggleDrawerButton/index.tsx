@@ -26,9 +26,9 @@ import {
   toggleVisibility
 } from '../../store/drawer';
 
-export const ToggleDrawerButton: React.FC<Partial<ToggleButtonProps>> = (
+export const ToggleDrawerButton: React.FC<Partial<ToggleButtonProps>> = ({
   ...passThroughProps
-): JSX.Element => {
+}): JSX.Element => {
   const isDrawerVisible = useAppSelector((state) => state.drawer.visible);
 
   const dispatch = useAppDispatch();
