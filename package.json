@@ -41,7 +41,7 @@
     "@terrestris/react-util": "^8.0.5",
     "@terrestris/shogun-util": "^9.0.0",
     "antd": "^5.22.2",
-    "i18next": "^23.16.0",
+    "i18next": "^24.1.0",
     "i18next-browser-languagedetector": "^8.0.0",
     "normalize.css": "^8.0.1",
     "ol": "^10.2.1",
