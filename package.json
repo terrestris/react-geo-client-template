@@ -52,7 +52,7 @@
     "react-redux": "^9.1.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.25.8",
+    "@babel/core": "^7.26.0",
     "@babel/preset-env": "^7.26.0",
     "@babel/preset-react": "^7.24.7",
     "@babel/preset-typescript": "^7.25.7",
