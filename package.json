@@ -38,7 +38,7 @@
     "@terrestris/base-util": "^3.0.0",
     "@terrestris/ol-util": "^21.0.0",
     "@terrestris/react-geo": "^26.2.1",
-    "@terrestris/react-util": "^10.0.1",
+    "@terrestris/react-util": "^12.1.1",
     "@terrestris/shogun-util": "^10.4.3",
     "antd": "^5.24.3",
     "i18next": "^24.2.2",
