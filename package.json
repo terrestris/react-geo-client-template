@@ -42,7 +42,7 @@
     "@terrestris/shogun-util": "^10.4.3",
     "antd": "^5.27.6",
     "i18next": "^24.2.2",
-    "i18next-browser-languagedetector": "^8.0.2",
+    "i18next-browser-languagedetector": "^8.2.0",
     "normalize.css": "^8.0.1",
     "ol": "^10.6.1",
     "ol-mapbox-style": "^12.5.0",
